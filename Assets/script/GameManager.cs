@@ -38,7 +38,10 @@ public class GameManager : MonoBehaviour
                 Instantiate(bloco, new Vector3(i * espacoLinhas, j * espacoLinhas), Quaternion.identity);//cria 100 blocos (só falta mudar a posição para poder ficar baita)
             }
         }
+        Instantiate(jogador1, new Vector3(1, 1 ,1), Quaternion.identity);
+        Instantiate(jogador2, new Vector3(1, 1, 1), Quaternion.identity);
     }
+    
 
 
 }
