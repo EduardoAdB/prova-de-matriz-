@@ -35,6 +35,11 @@ public class GameManager : MonoBehaviour
     }
     void CriarGrade()
     {
+        Vector2 posicaoJogadorVerde = new Vector2(3.9f, 5.03f);//mudar posição do spawn
+        Vector2 posicaoJogadorVermelho = new Vector2(6.07f, 5.03f);  //mudar spawn
+
+        Instantiate(jogador1, posicaoJogadorVerde, Quaternion.identity);
+        Instantiate(jogador2, posicaoJogadorVermelho, Quaternion.identity);
         for (int i = 0; i < linhas; i++)
         {
             for (int j = 0; j < colunas; j++)
@@ -46,11 +51,9 @@ public class GameManager : MonoBehaviour
         Camera.main.transform.position = centroMatriz;
         Camera.main.orthographicSize = Mathf.Max(linhas, colunas) * espacoLinhas / 2;
 
-        Vector3 posicaoJogador1 = new Vector3(0, 0, 0);//mudar posição do spawn
-        Vector3 posicaoJogador2 = new Vector3((linhas - 1) * espacoLinhas, 0, (colunas - 1) * espacoLinhas);  //mudar spawn
+       
 
-        Instantiate(jogador1, posicaoJogador1, Quaternion.identity);
-        Instantiate(jogador2, posicaoJogador2, Quaternion.identity);
+        
     }
     int pertenceAoJd1;
     int pertenceAoJd2;
