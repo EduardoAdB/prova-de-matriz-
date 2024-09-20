@@ -24,13 +24,13 @@ public class GameManager : MonoBehaviour
     int colunas = 10;
     float espacoLinhas = 1.1f;
 
-    private int[,] matriz;
+    private Bloco[,] matriz;
     private int territoriosConquistados;
 
     private void Awake()
     {
         instance = this;
-        matriz = new int[linhas, colunas];
+        matriz = new Bloco[linhas, colunas];
         CriarGrade();
     }
     void CriarGrade()
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         {
             for (int j = 0; j < colunas; j++)
             {
-                Instantiate(bloco, new Vector3(i * espacoLinhas, j * espacoLinhas), Quaternion.identity);//cria 100 blocos (só falta mudar a posição para poder ficar baita)
+                matriz[i,j] = Instantiate(bloco, new Vector3(i * espacoLinhas, j * espacoLinhas), Quaternion.identity).GetComponent<Bloco>();//cria 100 blocos (só falta mudar a posição para poder ficar baita)
             }
         }
         Vector3 centroMatriz = new Vector3((linhas - 1) * espacoLinhas / 2, (colunas - 1) * espacoLinhas / 2, -distanciaCamera);
@@ -68,11 +68,11 @@ public class GameManager : MonoBehaviour
             {
                 for (int j = 0; j < colunas; j++)
                 {
-                    if (matriz[i, j] == pertenceAoJd1)
+                    if (matriz[i, j].PegarJogadorDono() == 1)
                     {
                         blocosVerdes++;
                     }
-                    else if (matriz[i,j] == pertenceAoJd2)
+                    else if (matriz[i,j].PegarJogadorDono() == 2)
                     {
                         blocosVermelhos++;
                     }

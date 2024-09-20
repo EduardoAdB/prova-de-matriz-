@@ -19,51 +19,66 @@ public class Jogador : MonoBehaviour
     {
         if (jogador1)
         {
-            if (jogador1 = Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKey(KeyCode.A))
             {
-                direcao = new Vector2(-1, 0);
+                direcao.x = -1;
             }
- 
-        
-        
-            else if (jogador1 = Input.GetKeyDown(KeyCode.D))
+            else if (Input.GetKey(KeyCode.D))
             {
-                direcao = new Vector2(1, 0);
+                direcao.x = 1;
             }
-        
-        
-            else if (jogador1 = Input.GetKeyDown(KeyCode.W))
+            else
             {
-                direcao = new Vector2(0, 1);
+                direcao.x = 0;
             }
-       
-            else if (jogador1 = Input.GetKeyDown(KeyCode.S))
+
+
+            if (Input.GetKey(KeyCode.W))
             {
-                direcao = new Vector2(0, -1);
+                direcao.y = 1;
+            }
+
+            else if (Input.GetKey(KeyCode.S))
+            {
+                direcao.y = -1;
+            }
+            else
+            {
+                direcao.y = 0;
             }
         }
  
         if (jogador2)
         { 
-            if (jogador2 = Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.LeftArrow))
             {
-                direcao = new Vector2(-1, 0);
+                direcao.x = -1;
             }
-        
-        
-            else if (jogador2 = Input.GetKeyDown(KeyCode.RightArrow))
+
+
+            else if (Input.GetKey(KeyCode.RightArrow))
             {
-                direcao = new Vector2(1, 0);
+                direcao.x = 1;
             }
-        
-            else if (jogador2 = Input.GetKeyDown(KeyCode.UpArrow))
+            else
             {
-                direcao = new Vector2(0, 1);
-            }  
-        
-            else if (jogador2 = Input.GetKeyDown(KeyCode.DownArrow))
+                direcao.x = 0;
+
+            }
+
+            if (Input.GetKey(KeyCode.UpArrow))
             {
-                direcao = new Vector2(0, -1);
+                direcao.y = 1;
+            }
+
+            else if (Input.GetKey(KeyCode.DownArrow))
+            {
+                direcao.y = -1;
+            }
+            else
+            {
+                direcao.y = 0;
+
             }
         }
         transform.Translate(direcao * velocidade * Time.deltaTime);
@@ -74,10 +89,10 @@ public class Jogador : MonoBehaviour
     {
         if (collision.CompareTag("Block"))
         {
-           spriteRendererDobloco = collision.gameObject.GetComponent<SpriteRenderer>();
-            if (spriteRendererDobloco != null)
+           Bloco spriteRendererDobloco = collision.gameObject.GetComponent<Bloco>();
+            if (!spriteRendererDobloco.PegarConquistado())
             {
-                spriteRendererDobloco.color = cordoJogador;
+                spriteRendererDobloco.AlterarConquista(jogador1, cordoJogador);
             }
         }
     }
